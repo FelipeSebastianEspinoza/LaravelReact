@@ -13,11 +13,7 @@ use App\Transfer;
 
 class WalletTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function testGetWallet()
     {
         $wallet = factory(Wallet::class)->create();
