@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 
- Route::get('/wallet','WalletController@index');
+Route::get('/wallet', 'WalletController@index');
+Route::post('/transfer', 'TransferController@store');
