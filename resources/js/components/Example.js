@@ -8,12 +8,34 @@ export default class Example extends Component {
         this.state = {
             money: 0.0,
             transfers: [],
-            error: null
+            error: null,
+            form: {
+                description: "",
+                amount: "",
+                wallet_id: 1
+            }
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    handleSubmit(e) {
+        e.preventDEfault();
+        console.log("sending...");
+    }
+
+    handleChange(e) {
+        this.setState({
+            form: {
+                ...this.state.form,
+                [e.target.name]: e.target.value
+            }
+        });
+    }
+
     async componentDidMount() {
         try {
-            let res = await fetch('http://127.0.0.1:8000/api/wallet');
+            let res = await fetch("http://127.0.0.1:8000/api/wallet");
             let data = await res.json();
             this.setState({
                 money: data.money,
@@ -35,11 +57,15 @@ export default class Example extends Component {
                         </center>
                     </div>
                     <div className="col-md-12">
-                        <TransferForm />
+                        <TransferForm
+                            form={this.state.form}
+                            onChange={this.handleChange}
+                            onSubmit={this.handleSubmit}
+                        />
                     </div>
                 </div>
                 <div className="m-t-md">
-                    <TransferList transfers={this.state.transfers}/>
+                    <TransferList transfers={this.state.transfers} />
                 </div>
             </div>
         );
