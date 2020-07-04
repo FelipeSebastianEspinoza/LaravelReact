@@ -9,6 +9,7 @@ const TransferForm = ({ form, onChange, onSubmit }) => (
                 placeholder="Description"
                 name="description"
                 value={form.description}
+                onChange={onChange}
             />
         </div>
         <div className="input-group mx-sm-2 mb-2">
